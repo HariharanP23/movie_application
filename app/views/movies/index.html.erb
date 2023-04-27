@@ -1,0 +1,104 @@
+<% if @movies.present? %>
+  <div class="text-center">
+    <h1>Movies Review</h1>
+  </div>
+  <br>
+  <div class="row text-center">
+    <div class="col">
+    <%= form_tag movies_path, method: :get do %>
+      <%= text_field_tag :search, nil, placeholder:"Movie name",class:" form-control-lg " %>
+      <%= submit_tag "🔍",class:"btn btn-outline-primary my-2 my-sm-0" %>
+    <%end %>
+    </div>
+    <div class="col">
+      <%= form_tag movies_path, method: :get do %>
+        <div >
+          <%= label_tag :from_date, "From date:" %>
+          <%= date_field_tag :from_date %>
+
+          <%= label_tag :to_date, "To date:" %>
+          <%= date_field_tag :to_date %>
+
+          <%= submit_tag "Filter",class:"btn btn-outline-primary" %>
+        </div>
+      <% end %>
+    </div>
+
+    <% if @movie_count.present? %>
+      <div class="col">
+      <%= @movie_count %>
+      </div>
+    <%end %>
+
+    <div class="col">
+      <%= link_to 'New Movie', new_movie_path, class:"btn btn-outline-primary" %>
+    </div>
+  </div>
+
+
+
+  <br><br>
+  <table >
+    <tbody>
+    <div class="row">
+      <% @movies.each do |movie| %>
+        <div class="col-md-4 text-center">
+
+          <%= video_tag (url_for(movie.Sample_video)), controls: '', width: 250, height: 150 if movie.Sample_video.present?%><br>
+          <% user = User.find(movie.user_id) %>
+          <%= image_tag(user.Avatar,width: 40, height: 40, style: 'border-radius: 50%;') if user.Avatar.present? %>
+          <%= link_to "#{movie.Name}", movie %>
+          <%="💬" %><%= movie.comments_count.present? ? movie.comments_count : "0" %>
+          <%="☆" %><%= movie.average_ratings.present? ? movie.average_ratings.truncate(1) : "0" %>
+          <%= link_to "DEL", movie, method: :delete, data: { confirm: 'Are you sure! Do you want to delete?' } if can? :destroy, movie %>
+
+        </div>
+      <% end %>
+    </div>
+    </tbody>
+  </table>
+  <br>
+
+
+  <div class="body-footer">
+    <nav aria-label="...">
+      <ul class="pagination">
+        <% if @movies.previous_page %>
+          <li class="page-item">
+            <a class="page-link" href="<%= movies_path(page: @movies.previous_page) %>">Previous</a>
+          </li>
+        <% else %>
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+          </li>
+        <% end %>
+
+        <% @movies.total_pages.times do |page| %>
+          <% if @movies.current_page == page + 1 %>
+            <li class="page-item active">
+              <a class="page-link" href="#"><%= page + 1 %> <span class="sr-only">(current)</span></a>
+            </li>
+          <% else %>
+            <li class="page-item">
+              <a class="page-link" href="<%= movies_path(page: page + 1) %>"><%= page + 1 %></a>
+            </li>
+          <% end %>
+        <% end %>
+
+        <% if @movies.next_page %>
+          <li class="page-item">
+            <a class="page-link" href="<%= movies_path(page: @movies.next_page) %>">Next</a>
+          </li>
+        <% else %>
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Next</a>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+
+<%else %>
+  <%= "No data found" %>
+<%end %>
+

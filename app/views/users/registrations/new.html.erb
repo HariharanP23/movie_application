@@ -1,0 +1,89 @@
+<!--gradient-custom-->
+<section class="vh-100 bg-white">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration border-primary" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 text-center">Signup</h3>
+
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= render "users/shared/error_messages", resource: resource %>
+
+              <div class="row">
+                <div class="col-md-6 mb-4 ">
+
+                  <div class="field">
+                    <%= f.file_field :Avatar, accept: 'image/png,image/gif,image/jpeg,image/jfif' ,class:"form-control form-control-lg" %>
+                    <h5><%= f.label :Avatar,class:"form-label"  %></h5>
+                  </div>
+
+                </div>
+                <div class="col-md-6 mb-4 ">
+
+                  <div class="form-outline">
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"name@example.com",class:"form-control form-control-lg" %>
+                    <h5><%= f.label :email,class:"form-label" %></h5>
+                  </div>
+
+                </div>
+              </div>
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+
+                    <div class="form-outline">
+                      <%= f.text_field :First_name,placeholder:"Hari",class:"form-control form-control-lg" %>
+                      <h5><%= f.label :First_name,class:"form-label" %></h5>
+                    </div>
+
+                  </div>
+                  <div class="col-md-6 mb-4">
+
+                    <div class="form-outline">
+                      <%= f.text_field :Last_name,placeholder:"P",class:"form-control form-control-lg"  %>
+                      <h5><%= f.label :Last_name ,class:"form-label" %></h5>
+                    </div>
+
+                  </div>
+                </div>
+
+
+
+                <div class="row">
+                  <div class="col-md-6 mb-4 pb-2">
+
+                    <div class="form-outline">
+                      <%= f.password_field :password, autocomplete: "new-password",class:"form-control form-control-lg",placeholder:"new Password" %>
+                      <h5><%= f.label :password,class:"form-label" %>
+                      <% if @minimum_password_length %>
+                        <em>(<%= @minimum_password_length %> characters minimum)</em>
+                      <% end %></h5><br />
+                    </div>
+
+                  </div>
+                  <div class="col-md-6 mb-4 pb-2">
+
+                    <div class="field">
+                      <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"form-control form-control-lg",placeholder:"Confirmation Password" %>
+                      <h5><%= f.label :password_confirmation, class:"form-label" %></h5>
+                    </div>
+
+                  </div>
+                </div>
+
+
+              <div class="text-center">
+                <%= button_tag "SIGNUP", class: "btn btn-outline-dark btn-lg px-5", type: "submit" %>
+              </div>
+              <% end %>
+
+            <div class="text-center">
+              <p class="mb-0">Did you have an account?   <%= render "users/shared/links",class:"text-primary-50 fw-bold" %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

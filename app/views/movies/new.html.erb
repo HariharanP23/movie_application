@@ -1,0 +1,14 @@
+<div class="row text-center">
+  <div class="col">
+    <h1>New Movie</h1>
+  </div>
+  <div class="col ">
+    <%= link_to 'Back', movies_path, class:"btn btn-outline-primary" %>
+  </div>
+
+</div>
+
+
+<%= render 'form', movie: @movie %>
+
+

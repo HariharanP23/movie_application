@@ -1,0 +1,47 @@
+<section class="vh-100 bg-white">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-white text-dark border-primary" style="border-radius: 1rem;">
+          <div class="card-body p-5 ">
+
+            <div class="mb-md-1 mt-md-2 pb-5">
+
+              <h2 class="fw-bold mb-2 text-uppercase text-center">Login</h2>
+              <p class="text-white-50 mb-5">Please enter your login and password!</p>
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div class="field form-outline form-white mb-4">
+                  <h4><%= f.label :"Email address"%></h4><br />
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control form-control-lg",placeholder:"name@example.com" %>
+                </div>
+
+                <div class="field form-outline form-white mb-4">
+                  <h4><%= f.label :Password %></h4><br />
+                  <%= f.password_field :password, autocomplete: "current-password", class:"form-control form-control-lg" %>
+                </div>
+
+                <% if devise_mapping.rememberable? %>
+                  <div class="field">
+                    <h4><%= f.check_box :remember_me %>
+                    <%= f.label :remember_me %></h4>
+                  </div>
+                <% end %>
+
+                <div class="text-center">
+                <%= button_tag "LOGIN", class: "btn btn-outline-dark btn-lg px-5", type: "submit" %>
+                </div>
+
+              <% end %>
+            </div>
+
+            <div class="text-center">
+              <p class="mb-0">Don't have an account?  <%= render "users/shared/links", class:"text-dark-50 fw-bold"%>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,13 @@
+
+  <% comments.each do |comment| %>
+    <div class="row">
+      <% user = User.find(comment.user_id) %>
+      <div class="col">
+        <%= image_tag(user.Avatar,width: 40, height: 40, style: 'border-radius: 50%;') if user.Avatar.present? %>
+        <%= user.First_name %> |
+        <%=user.email %><br>
+        <%= comment.comment %>
+
+      </div>
+    </div>
+  <% end %>

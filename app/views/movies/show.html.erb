@@ -1,0 +1,58 @@
+<section class="vh-100 gradient-custom">
+  <div class="container  h-150">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-100">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-4">
+            <div style="position: relative; width: 100%; padding-bottom: 56.25%;" class="text-center">
+              <%= video_tag (url_for(@movie.Sample_video)), controls: '',style:"position: absolute; left: 0%; top: 0%; width: 100%; height: 100%" if @movie.Sample_video.present?%>
+            </div>
+            <br>
+            <div>
+              <p>
+                <strong>Name:</strong>
+                <%= @movie.Name %>
+              </p>
+
+              <p>
+                <strong>Release date:</strong>
+                <%= @movie.release_date %>
+              </p>
+
+              <p>
+                <strong>User:</strong>
+                <%= @movie.user_id %>
+              </p>
+
+              <p>
+                <strong>Add Rating:</strong>
+                <%= render 'ratings/form', rating: @movie.ratings.build %>
+              </p>
+
+              <div class="border border-primary ">
+                <strong>Comments:</strong>
+                <%= render 'comments/form',comment:@movie.comments.build %>
+                <%= render 'comments/index',comments:@movie.comments.order(comment: :desc).all %>
+              </div>
+
+            </div>
+            <br>
+            <div class="row">
+              <div class="col"></div>
+              <div class="col">
+                <%= link_to 'Edit', edit_movie_path(@movie),class:"btn btn-outline-primary" if can? :update, @movie%>
+              </div>
+              <div class="col"></div>
+              <div class="col"></div>
+              <div class="col text-right">
+                <%= link_to 'Back', movies_path,class:"btn btn-outline-warning" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

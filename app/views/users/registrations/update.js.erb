@@ -1,0 +1,6 @@
+<% if resource.errors.any? %>
+  $(".modal-body").html('<%= j(render "users/shared/edit", resource_name: resource) %>');
+<%else %>
+  alert("Updated Successfully");
+  window.location = '<%= @movies_path %>';
+<% end %>
