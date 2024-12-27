@@ -4,7 +4,7 @@
   "dependencies": {
     "@babel/preset-react": "^7.26.3",
     "@rails/actioncable": "^8.0.100",
-    "@rails/activestorage": "^8.0.0",
+    "@rails/activestorage": "^8.0.100",
     "@rails/ujs": "^7.1.500",
     "@rails/webpacker": "5.4.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
